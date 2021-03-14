@@ -4,9 +4,15 @@ import { Bundle, Pair, Token } from '../types/schema'
 import { ADDRESS_ZERO, factoryContract, ONE_BD, ZERO_BD } from './helpers'
 
 const WETH_ADDRESS = '0x70c1c53E991F31981d592C2d865383AC0d212225'
-const USDC_WETH_PAIR = '0x3e33590013B24bf21D4cCca3a965eA10e570D5B2' // created 10008355
-const DAI_WETH_PAIR = '0x533367b864D9b9AA59D0DCB6554DF0C89feEF1fF' // created block 10042267
-const USDT_WETH_PAIR = '0xe579156f9dEcc4134B5E3A30a24Ac46BB8B01281' // created block 10093341
+
+// usdc-wokt
+const USDC_WETH_PAIR = '0xa7fb72be0c514d70d32d7958218f2d36e521140a' // created 10008355
+
+// usdk-wokt
+const DAI_WETH_PAIR = '0x25bf4470a891635e835bbc6b25328f8507ec6c37' // created block 10042267
+
+// usdt-wokt
+const USDT_WETH_PAIR = '0xa83312921ad82d2aa8b2c8b747a27087fd4cdc86' // created block 10093341
 
 export function getEthPriceInUSD(): BigDecimal {
   // fetch eth prices for each stablecoin
@@ -41,7 +47,7 @@ export function getEthPriceInUSD(): BigDecimal {
 // token where amounts should contribute to tracked volume and liquidity
 let WHITELIST: string[] = [
   '0x70c1c53E991F31981d592C2d865383AC0d212225', // WETH
-  '0x533367b864D9b9AA59D0DCB6554DF0C89feEF1fF', // DAI
+  '0x533367b864D9b9AA59D0DCB6554DF0C89feEF1fF', // DAI -> USDK
   '0x3e33590013B24bf21D4cCca3a965eA10e570D5B2', // USDC
   '0xe579156f9dEcc4134B5E3A30a24Ac46BB8B01281' // USDT
 ]
