@@ -3,22 +3,22 @@ import { Address, BigDecimal, BigInt } from '@graphprotocol/graph-ts/index'
 import { Bundle, Pair, Token } from '../types/schema'
 import { ADDRESS_ZERO, factoryContract, ONE_BD, ZERO_BD } from './helpers'
 
-const WETH_ADDRESS = '0x70c1c53E991F31981d592C2d865383AC0d212225'
+const WOKT_ADDRESS = '0x70c1c53E991F31981d592C2d865383AC0d212225'
 
 // usdc-wokt
-const USDC_WETH_PAIR = '0xa7fb72be0c514d70d32d7958218f2d36e521140a' // created 10008355
+const USDC_WOKT_PAIR = '0x5dc921cb3ab5bb7d94189aa460e0bd9e36ce6b52' // created -
 
 // usdk-wokt
-const DAI_WETH_PAIR = '0x25bf4470a891635e835bbc6b25328f8507ec6c37' // created block 10042267
+const USDK_WOKT_PAIR = '0xfa6be8403ebc0d22add01d6360a01d2e87e52a68' // created block -
 
 // usdt-wokt
-const USDT_WETH_PAIR = '0xa83312921ad82d2aa8b2c8b747a27087fd4cdc86' // created block 10093341
+const USDT_WOKT_PAIR = '0xbca246ce4d0e77c003906aec334195d3c65eedb4' // created block -
 
 export function getEthPriceInUSD(): BigDecimal {
   // fetch eth prices for each stablecoin
-  let daiPair = Pair.load(DAI_WETH_PAIR) // dai is token0
-  let usdcPair = Pair.load(USDC_WETH_PAIR) // usdc is token0
-  let usdtPair = Pair.load(USDT_WETH_PAIR) // usdt is token1
+  let daiPair = Pair.load(USDK_WOKT_PAIR) // dai is token0
+  let usdcPair = Pair.load(USDC_WOKT_PAIR) // usdc is token0
+  let usdtPair = Pair.load(USDT_WOKT_PAIR) // usdt is token1
 
   // all 3 have been created
   if (daiPair !== null && usdcPair !== null && usdtPair !== null) {
@@ -47,7 +47,7 @@ export function getEthPriceInUSD(): BigDecimal {
 // token where amounts should contribute to tracked volume and liquidity
 let WHITELIST: string[] = [
   '0x70c1c53E991F31981d592C2d865383AC0d212225', // WETH
-  '0x533367b864D9b9AA59D0DCB6554DF0C89feEF1fF', // DAI -> USDK
+  '0x533367b864D9b9AA59D0DCB6554DF0C89feEF1fF', // USDK
   '0x3e33590013B24bf21D4cCca3a965eA10e570D5B2', // USDC
   '0xe579156f9dEcc4134B5E3A30a24Ac46BB8B01281' // USDT
 ]
@@ -63,7 +63,7 @@ let MINIMUM_LIQUIDITY_THRESHOLD_ETH = BigDecimal.fromString('2')
  * @todo update to be derived ETH (add stablecoin estimates)
  **/
 export function findEthPerToken(token: Token): BigDecimal {
-  if (token.id == WETH_ADDRESS) {
+  if (token.id == WOKT_ADDRESS) {
     return ONE_BD
   }
   // loop through whitelist and check if paired with any
