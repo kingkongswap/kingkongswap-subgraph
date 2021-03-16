@@ -46,10 +46,17 @@ export function getEthPriceInUSD(): BigDecimal {
 
 // token where amounts should contribute to tracked volume and liquidity
 let WHITELIST: string[] = [
-  '0x70c1c53E991F31981d592C2d865383AC0d212225', // WETH
+  '0x70c1c53E991F31981d592C2d865383AC0d212225', // WOKT
   '0x533367b864D9b9AA59D0DCB6554DF0C89feEF1fF', // USDK
   '0x3e33590013B24bf21D4cCca3a965eA10e570D5B2', // USDC
-  '0xe579156f9dEcc4134B5E3A30a24Ac46BB8B01281' // USDT
+  '0xe579156f9dEcc4134B5E3A30a24Ac46BB8B01281', // USDT
+  '0x09973e7e3914EB5BA69C7c025F30ab9446e3e4e0', // BTCK
+  '0xDF950cEcF33E64176ada5dD733E170a56d11478E', // ETHK
+  '0x72f8fa5da80dc6e20e00d02724cf05ebd302c35f', // DOTK
+  '0xf6a0Dc1fD1d2c0122ab075d7ef93aD79F02CcB93', // FILK
+  '0xd616388f6533B6f1c31968a305FbEE1727F55850', // LTCK
+  '0x4888097d1B29b439C55C6d3E44031eE658237dE3', // KKT
+  '0x6fd9db63dbc6be452ae7b0fe9995c81d967870bb', // NAS
 ]
 
 // minimum liquidity required to count towards tracked volume for pairs with small # of Lps
@@ -102,7 +109,7 @@ export function getTrackedVolumeUSD(
   let price1 = token1.derivedETH.times(bundle.ethPrice)
 
   // if less than 5 LPs, require high minimum reserve amount amount or return 0
-  if (pair.liquidityProviderCount.lt(BigInt.fromI32(5))) {
+  if (pair.liquidityProviderCount.lt(BigInt.fromI32(1))) {
     let reserve0USD = pair.reserve0.times(price0)
     let reserve1USD = pair.reserve1.times(price1)
     if (WHITELIST.includes(token0.id) && WHITELIST.includes(token1.id)) {
