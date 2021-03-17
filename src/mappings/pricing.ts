@@ -6,13 +6,13 @@ import { ADDRESS_ZERO, factoryContract, ONE_BD, ZERO_BD } from './helpers'
 const WOKT_ADDRESS = '0x70c1c53E991F31981d592C2d865383AC0d212225'
 
 // usdc-wokt
-const USDC_WOKT_PAIR = '0x5dc921cb3ab5bb7d94189aa460e0bd9e36ce6b52' // created -
+const USDC_WOKT_PAIR = '0x4a8123ac977380198241e9edc64a986e483ba75d' // created -
 
 // usdk-wokt
-const USDK_WOKT_PAIR = '0xfa6be8403ebc0d22add01d6360a01d2e87e52a68' // created block -
+const USDK_WOKT_PAIR = '0xc3a9967c7ab0a4312e225feef19103168995643d' // created block -
 
 // usdt-wokt
-const USDT_WOKT_PAIR = '0xbca246ce4d0e77c003906aec334195d3c65eedb4' // created block -
+const USDT_WOKT_PAIR = '0x695Ef962b4Ee88ED193148E486208D58d184D203' // created block -
 
 export function getEthPriceInUSD(): BigDecimal {
   // fetch eth prices for each stablecoin
@@ -60,10 +60,10 @@ let WHITELIST: string[] = [
 ]
 
 // minimum liquidity required to count towards tracked volume for pairs with small # of Lps
-let MINIMUM_USD_THRESHOLD_NEW_PAIRS = BigDecimal.fromString('400000')
+let MINIMUM_USD_THRESHOLD_NEW_PAIRS = BigDecimal.fromString('1')
 
 // minimum liquidity for price to get tracked
-let MINIMUM_LIQUIDITY_THRESHOLD_ETH = BigDecimal.fromString('2')
+let MINIMUM_LIQUIDITY_THRESHOLD_ETH = BigDecimal.fromString('1')
 
 /**
  * Search through graph to find derived Eth per token.
