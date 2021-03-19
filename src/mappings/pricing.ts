@@ -3,7 +3,7 @@ import { Address, BigDecimal, BigInt } from '@graphprotocol/graph-ts/index'
 import { Bundle, Pair, Token } from '../types/schema'
 import { ADDRESS_ZERO, factoryContract, ONE_BD, ZERO_BD } from './helpers'
 
-const WOKT_ADDRESS = '0x70c1c53E991F31981d592C2d865383AC0d212225'
+const WOKT_ADDRESS = '0x70c1c53e991f31981d592c2d865383ac0d212225'
 
 // usdc-wokt
 const USDC_WOKT_PAIR = '0x4a8123ac977380198241e9edc64a986e483ba75d' // created -
@@ -12,7 +12,7 @@ const USDC_WOKT_PAIR = '0x4a8123ac977380198241e9edc64a986e483ba75d' // created -
 const USDK_WOKT_PAIR = '0xc3a9967c7ab0a4312e225feef19103168995643d' // created block -
 
 // usdt-wokt
-const USDT_WOKT_PAIR = '0x695Ef962b4Ee88ED193148E486208D58d184D203' // created block -
+const USDT_WOKT_PAIR = '0x695ef962b4ee88ed193148e486208d58d184d203' // created block -
 
 export function getEthPriceInUSD(): BigDecimal {
   // fetch eth prices for each stablecoin
@@ -46,10 +46,10 @@ export function getEthPriceInUSD(): BigDecimal {
 
 // token where amounts should contribute to tracked volume and liquidity
 let WHITELIST: string[] = [
-  '0x70c1c53E991F31981d592C2d865383AC0d212225', // WOKT
-  '0x533367b864D9b9AA59D0DCB6554DF0C89feEF1fF', // USDK
-  '0x3e33590013B24bf21D4cCca3a965eA10e570D5B2', // USDC
-  '0xe579156f9dEcc4134B5E3A30a24Ac46BB8B01281', // USDT
+  '0x70c1c53e991f31981d592c2d865383ac0d212225', // WOKT
+  '0x533367b864d9b9aa59d0dcb6554df0c89feef1ff', // USDK
+  '0x3e33590013b24bf21d4ccca3a965ea10e570d5b2', // USDC
+  '0xe579156f9decc4134b5e3a30a24ac46bb8b01281', // USDT
   '0x09973e7e3914EB5BA69C7c025F30ab9446e3e4e0', // BTCK
   '0xDF950cEcF33E64176ada5dD733E170a56d11478E', // ETHK
   '0x72f8fa5da80dc6e20e00d02724cf05ebd302c35f', // DOTK
