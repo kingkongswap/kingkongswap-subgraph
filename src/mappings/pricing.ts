@@ -11,34 +11,34 @@ const USDC_WOKT_PAIR = '0x4a8123ac977380198241e9edc64a986e483ba75d' // created -
 // usdk-wokt
 const USDK_WOKT_PAIR = '0xc3a9967c7ab0a4312e225feef19103168995643d' // created block -
 
-// usdt-wokt
+// wokt-usdt
 const USDT_WOKT_PAIR = '0x695ef962b4ee88ed193148e486208d58d184d203' // created block -
 
 export function getEthPriceInUSD(): BigDecimal {
   // fetch eth prices for each stablecoin
-  let daiPair = Pair.load(USDK_WOKT_PAIR) // dai is token0
+  let usdkPair = Pair.load(USDK_WOKT_PAIR) // usdk is token0
   let usdcPair = Pair.load(USDC_WOKT_PAIR) // usdc is token0
   let usdtPair = Pair.load(USDT_WOKT_PAIR) // usdt is token1
 
   // all 3 have been created
-  if (daiPair !== null && usdcPair !== null && usdtPair !== null) {
-    let totalLiquidityETH = daiPair.reserve1.plus(usdcPair.reserve1).plus(usdtPair.reserve0)
-    let daiWeight = daiPair.reserve1.div(totalLiquidityETH)
+  if (usdkPair !== null && usdcPair !== null && usdtPair !== null) {
+    let totalLiquidityETH = usdkPair.reserve1.plus(usdcPair.reserve1).plus(usdtPair.reserve0)
+    let usdkWeight = usdkPair.reserve1.div(totalLiquidityETH)
     let usdcWeight = usdcPair.reserve1.div(totalLiquidityETH)
     let usdtWeight = usdtPair.reserve0.div(totalLiquidityETH)
-    return daiPair.token0Price
-      .times(daiWeight)
+    return usdkPair.token0Price
+      .times(usdkWeight)
       .plus(usdcPair.token0Price.times(usdcWeight))
       .plus(usdtPair.token1Price.times(usdtWeight))
-    // dai and USDC have been created
-  } else if (daiPair !== null && usdcPair !== null) {
-    let totalLiquidityETH = daiPair.reserve1.plus(usdcPair.reserve1)
-    let daiWeight = daiPair.reserve1.div(totalLiquidityETH)
-    let usdcWeight = usdcPair.reserve1.div(totalLiquidityETH)
-    return daiPair.token0Price.times(daiWeight).plus(usdcPair.token0Price.times(usdcWeight))
-    // USDC is the only pair so far
-  } else if (usdcPair !== null) {
-    return usdcPair.token0Price
+    // USDK and USDT have been created
+  } else if (usdkPair !== null && usdtPair !== null) {
+    let totalLiquidityETH = usdkPair.reserve1.plus(usdtPair.reserve0)
+    let usdkWeight = usdkPair.reserve1.div(totalLiquidityETH)
+    let usdcWeight = usdtPair.reserve0.div(totalLiquidityETH)
+    return usdkPair.token0Price.times(usdkWeight).plus(usdtPair.token1Price.times(usdcWeight))
+    // USDT is the only pair so far
+  } else if (usdtPair !== null) {
+    return usdtPair.token1Price
   } else {
     return ZERO_BD
   }
