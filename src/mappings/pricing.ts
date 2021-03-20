@@ -5,39 +5,21 @@ import { ADDRESS_ZERO, factoryContract, ONE_BD, ZERO_BD } from './helpers'
 
 const WOKT_ADDRESS = '0x70c1c53e991f31981d592c2d865383ac0d212225'
 
-// usdc-wokt
-const USDC_WOKT_PAIR = '0x4a8123ac977380198241e9edc64a986e483ba75d' // created -
+// // usdc-wokt
+// const USDC_WOKT_PAIR = '0x4a8123ac977380198241e9edc64a986e483ba75d' 
 
-// usdk-wokt
-const USDK_WOKT_PAIR = '0xc3a9967c7ab0a4312e225feef19103168995643d' // created block -
+// // usdk-wokt
+// const USDK_WOKT_PAIR = '0xc3a9967c7ab0a4312e225feef19103168995643d' 
 
 // wokt-usdt
-const USDT_WOKT_PAIR = '0x695ef962b4ee88ed193148e486208d58d184d203' // created block -
-
+const USDT_WOKT_PAIR = '0xbca246ce4d0e77c003906aec334195d3c65eedb4'
 export function getEthPriceInUSD(): BigDecimal {
   // fetch eth prices for each stablecoin
-  let usdkPair = Pair.load(USDK_WOKT_PAIR) // usdk is token0
-  let usdcPair = Pair.load(USDC_WOKT_PAIR) // usdc is token0
+  // let usdkPair = Pair.load(USDK_WOKT_PAIR) // usdk is token0
+  // let usdcPair = Pair.load(USDC_WOKT_PAIR) // usdc is token0
   let usdtPair = Pair.load(USDT_WOKT_PAIR) // usdt is token1
 
-  // all 3 have been created
-  if (usdkPair !== null && usdcPair !== null && usdtPair !== null) {
-    let totalLiquidityETH = usdkPair.reserve1.plus(usdcPair.reserve1).plus(usdtPair.reserve0)
-    let usdkWeight = usdkPair.reserve1.div(totalLiquidityETH)
-    let usdcWeight = usdcPair.reserve1.div(totalLiquidityETH)
-    let usdtWeight = usdtPair.reserve0.div(totalLiquidityETH)
-    return usdkPair.token0Price
-      .times(usdkWeight)
-      .plus(usdcPair.token0Price.times(usdcWeight))
-      .plus(usdtPair.token1Price.times(usdtWeight))
-    // USDK and USDT have been created
-  } else if (usdkPair !== null && usdtPair !== null) {
-    let totalLiquidityETH = usdkPair.reserve1.plus(usdtPair.reserve0)
-    let usdkWeight = usdkPair.reserve1.div(totalLiquidityETH)
-    let usdcWeight = usdtPair.reserve0.div(totalLiquidityETH)
-    return usdkPair.token0Price.times(usdkWeight).plus(usdtPair.token1Price.times(usdcWeight))
-    // USDT is the only pair so far
-  } else if (usdtPair !== null) {
+  if (usdtPair !== null) {
     return usdtPair.token1Price
   } else {
     return ZERO_BD
@@ -52,11 +34,6 @@ let WHITELIST: string[] = [
   '0xe579156f9decc4134b5e3a30a24ac46bb8b01281', // USDT
   '0x09973e7e3914eb5ba69c7c025f30ab9446e3e4e0', // BTCK
   '0xdf950cecf33e64176ada5dd733e170a56d11478e', // ETHK
-  '0x72f8fa5da80dc6e20e00d02724cf05ebd302c35f', // DOTK
-  '0xf6a0dc1fd1d2c0122ab075d7ef93ad79f02ccb93', // FILK
-  '0xd616388f6533b6f1c31968a305fbee1727f55850', // LTCK
-  '0x4888097d1b29b439c55c6d3e44031ee658237de3', // KKT
-  '0x6fd9db63dbc6be452ae7b0fe9995c81d967870bb', // NAS
 ]
 
 // minimum liquidity required to count towards tracked volume for pairs with small # of Lps
